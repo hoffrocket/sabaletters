@@ -7,7 +7,16 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    {% block head %}{% endblock %}
+    <style>
+  #timeline {
+    background-color: white;
+  }
+  .point {
+    fill: steelblue;
+    stroke: white;
+  }
+</style>
+
   </head>
   <body>
     <div class="container">
@@ -15,6 +24,8 @@
     </div> <!-- /container -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="timeline.js"></script>
     {% block foot %}{% endblock %}
   </body>
 </html>

@@ -1,18 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Saba Letters{% endblock %}
 {% block head %}
-<style>
-  #timeline {
-    background-color: white;
-  }
-  .point {
-    fill: steelblue;
-    stroke: white;
-  }
-</style>
+
 {% endblock %}
 {% block body %}
-<h1>Saba Letters</h1>
+<h1><a href="index.html">Saba Letters</a></h1>
 <div id="timeline"></div>
 
 
@@ -33,8 +25,6 @@
 {% endif %}
 {% endblock %}
 {% block foot %}
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="timeline.js"></script>
 <script>
   $(function(){
     $('a').tooltip();

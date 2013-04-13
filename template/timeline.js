@@ -11,8 +11,8 @@ $(function(){
           height = 50;
 
       var x = d3.time.scale()
-          .domain([d3.time.year(new Date(data[0].date)), d3.time.year(new Date(data[data.length - 1].date))])
-          .range([0, width - margin.left - margin.right - 10]);
+          .domain([d3.time.year(new Date(data[0].date)), new Date(data[data.length - 1].date)])
+          .range([0, width - margin.left - margin.right]);
 
       var xAxis = d3.svg.axis()
           .scale(x)
@@ -53,6 +53,9 @@ $(function(){
           .on("mouseout", function(){
             var circle = d3.select(this);
             circle.transition().attr('r', function(d){ return 5; });
+          }).
+          on("click", function(d){
+            window.location = d.date + ".html";
           });
     }
   }

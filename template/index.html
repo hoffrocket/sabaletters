@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Saba Letters{% endblock %}
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+{% block body %}
+<h1>Saba Letters</h1>
+<div id="timeline"></div>
+<div class="row-fluid">
+  <div class="span8">
+    This is site is detected to my grandparents, Shlomo and Tzili Yoeli.
+  </div>
+  <div class="span4">
+    bla bla
+  </div>
+</div>
+
+{% endblock %}
+{% block foot %}
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="timeline.js"></script>
+<script>
+  $(function(){
+    $('a').tooltip();
+  });
+</script>
+{% endblock %}

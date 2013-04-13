@@ -17,12 +17,16 @@ class LetterRenderer:
     env = Environment(loader=PackageLoader('sitegen', 'template'))
     self.timeline_template = env.get_template("timeline.js")
     self.letter_template = env.get_template("letter.html")
+    self.index_template = env.get_template("index.html")
     self.all_letters = [f[:-9] for f in os.listdir('letter')]
     self.letter_images = dict((f[:-4], f) for f in os.listdir('letter-img'))
 
   def render_timeline_js(self):
     hashes = [{'date': n } for n in self.all_letters]
     return self.timeline_template.render(timeline_data = json.dumps(hashes))
+
+  def render_index(self):
+    return self.index_template.render()
   
   def render_letter(self, letter_name):
     with open("letter/" + letter_name + ".markdown") as letter:
