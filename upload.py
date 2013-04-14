@@ -7,19 +7,20 @@ import os
 import boto.s3
 from boto.s3.key import Key
 from pprint import pprint
+import sitegen
 
 KEY = os.environ['aws_key']
 SECRET = os.environ['aws_secret']
 
 def do_upload(key, file_pointer):
-    cache_time = 60 * 5
-    now = datetime.now()
-    expire_dt = now + timedelta(seconds=cache_time * 1.5)
-    key.set_contents_from_file(file_pointer, policy="public-read",
-      headers={
-        'Cache-Control': 'max-age=%d, must-revalidate' % int(cache_time),
-        'Expires': expire_dt.strftime("%a, %d %b %Y %H:%M:%S GMT")
-      })
+  cache_time = 60 * 5
+  now = datetime.now()
+  expire_dt = now + timedelta(seconds=cache_time * 1.5)
+  key.set_contents_from_file(file_pointer, policy="public-read",
+    headers={
+      'Cache-Control': 'max-age=%d, must-revalidate' % int(cache_time),
+      'Expires': expire_dt.strftime("%a, %d %b %Y %H:%M:%S GMT")
+    })
 
 
 def upload_dir_to_s3(bucket, src_dir):
@@ -41,11 +42,12 @@ def upload_dir_to_s3(bucket, src_dir):
           # for some weird reason, etags are quoted, strip them
           etag = etag.strip('"').strip("'")
           if etag not in md5:
-              do_upload(key, file_pointer)
-              print("Updating: " + key.key)
+            do_upload(key, file_pointer)
+            print("Updating: " + key.key)
           else:
               print("Skipping: " + key.key)
 
 
 if __name__ == "__main__":
-    upload_dir_to_s3('sabaletters', 'site')
+  sitegen.gen()
+  upload_dir_to_s3('sabaletters', 'site')

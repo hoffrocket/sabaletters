@@ -36,7 +36,7 @@ class LetterRenderer:
         date = date, 
         image = self.letter_images.get(letter_name))
 
-if __name__ == "__main__":
+def gen():
   shutil.rmtree("site", True)
   os.mkdir("site")
   # copy static stuff to the site
@@ -56,3 +56,6 @@ if __name__ == "__main__":
 
   with open("site/index.html", "w") as out:
     out.write(letter_renderer.render_index())
+
+if __name__ == "__main__":
+  gen()
