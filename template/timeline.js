@@ -42,17 +42,14 @@ $(function(){
           .attr('class', 'point')
           .attr('cx', function(d){ return x(new Date(d.date)); })
           .attr('cy', 0)
-          .attr('r', function(d){ return 5; })
-          .on("click", function(d) {
-            console.log("click on " + d.date);
-          })
+          .attr('r', 6)
           .on("mouseover", function(){
             var circle = d3.select(this);
             circle.transition().attr('r', function(d){ return 8; });
           })
           .on("mouseout", function(){
             var circle = d3.select(this);
-            circle.transition().attr('r', function(d){ return 5; });
+            circle.transition().attr('r', function(d){ return 6; });
           }).
           on("click", function(d){
             window.location = d.date + ".html";

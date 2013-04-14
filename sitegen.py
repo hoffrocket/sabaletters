@@ -37,7 +37,7 @@ class LetterRenderer:
         image = self.letter_images.get(letter_name))
 
 if __name__ == "__main__":
-  shutil.rmtree("site")
+  shutil.rmtree("site", True)
   os.mkdir("site")
   # copy static stuff to the site
 
@@ -53,3 +53,6 @@ if __name__ == "__main__":
   # render the timeline
   with open("site/timeline.js", "w") as out:
     out.write(letter_renderer.render_timeline_js())
+
+  with open("site/index.html", "w") as out:
+    out.write(letter_renderer.render_index())

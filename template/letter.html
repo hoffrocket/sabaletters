@@ -4,20 +4,23 @@
 
 {% endblock %}
 {% block body %}
-<h1><a href="index.html">Saba Letters</a></h1>
+<h2><a href="index.html">Saba Letters</a></h2>
 <div id="timeline"></div>
-
-
 {% if image %}
   <div class="row-fluid">
     <div class="span7">
-      <h3>{{ date }}</h3>
+      <p class="lead"><strong>{{ date }}</strong></p>
       {{ letter }}
     </div>
     <div class="span5">
-      <br/>
-      <img src="letter-img/{{image}}" alt="Letter from {{date}}"/>
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img class="img-rounded" src="letter-img/{{image}}" alt="Letter from {{date}}"/>
+      </a>
+      <div id="imageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <img class="img-polaroid" src="letter-img/{{image}}" alt="Letter from {{date}}" data-dismiss="modal" aria-hidden="true"/>
+      </div>
     </div>
+    
   </div>
 {% else %}
   <h3>{{ date }}</h3>
