@@ -15,22 +15,18 @@ sys.setdefaultencoding('utf-8')
 class LetterRenderer:
   def __init__(self):
     env = Environment(loader=PackageLoader('sitegen', 'template'))
-    self.timeline_template = env.get_template("timeline.js")
     self.letter_template = env.get_template("letter.html")
     self.index_template = env.get_template("index.html")
     self.all_letters = [f[:-9] for f in os.listdir('letter')]
     self.letter_images = dict((f[:-4], f) for f in os.listdir('static/letter-img'))
-
-  def render_timeline_js(self):
-    hashes = [{'date': n } for n in self.all_letters]
-    return self.timeline_template.render(timeline_data = json.dumps(hashes))
+    self.timeline_json = [{'date': n } for n in self.all_letters]
 
   def render_index(self):
-    return self.index_template.render()
+    return self.index_template.render(timeline_data=json.dumps(self.timeline_json))
   
   def render_letter(self, letter_name):
     with open("letter/" + letter_name + ".markdown") as letter:
-      letter_mardown = markdown(letter.read())
+      letter_markdown = markdown(letter.read())
       date = datetime.datetime.strptime(letter_name,"%Y-%m-%d").strftime("%B %d, %Y")
       index = self.all_letters.index(letter_name)
       previous = None
@@ -41,11 +37,13 @@ class LetterRenderer:
         next = self.all_letters[index + 1] + ".html"
 
       return self.letter_template.render(
-        letter=letter_mardown, 
+        letter=letter_markdown, 
         date=date, 
         image=self.letter_images.get(letter_name),
         next=next,
-        previous=previous)
+        previous=previous,
+        timeline_data=json.dumps(self.timeline_json),
+        current_letter_name=letter_name)
 
 def gen():
   shutil.rmtree("site", True)
@@ -59,10 +57,6 @@ def gen():
   for letter_name in letter_renderer.all_letters:
     with open("site/" + letter_name + ".html", "w") as outFile:
       outFile.write(letter_renderer.render_letter(letter_name))
-
-  # render the timeline
-  with open("site/timeline.js", "w") as out:
-    out.write(letter_renderer.render_timeline_js())
 
   with open("site/index.html", "w") as out:
     out.write(letter_renderer.render_index())

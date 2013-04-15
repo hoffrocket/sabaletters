@@ -16,6 +16,11 @@
         stroke: white;
         cursor: pointer;
       }
+      .currentPoint {
+        fill: white;
+        stroke: green;
+        stroke-width: 4;
+      }
       .container {
         margin-right: auto;
         margin-left: auto;
@@ -51,7 +56,18 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="timeline.js"></script>
+    <script src="static/js/timeline.js"></script>
+    <script>
+      // initialize timeline on window load
+      $(function(){
+        function drawTimeline(){
+          SabaLetters.drawTimeline({{timeline_data}}, "{{current_letter_name}}");
+        }
+        drawTimeline();
+        $(window).resize(drawTimeline);
+        $('a').tooltip();
+      });
+    </script>
     {% block foot %}{% endblock %}
   </body>
 </html>

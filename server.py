@@ -20,11 +20,6 @@ def letter(letter_name):
   letter_renderer = LetterRenderer()
   return letter_renderer.render_letter(letter_name)
 
-@app.route('/timeline.js')
-def timelinejs():
-  letter_renderer = LetterRenderer()
-  return letter_renderer.render_timeline_js()
-
 @app.route('/static/<path:filename>')
 def bootstrap(filename):
   return flask.send_from_directory('static/',filename)
