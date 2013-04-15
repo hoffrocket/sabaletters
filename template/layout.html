@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <style>
-      #timeline {
-        background-color: white;
-      }
       .point {
         fill: steelblue;
         stroke: white;
@@ -22,7 +19,7 @@
       .container {
         margin-right: auto;
         margin-left: auto;
-        max-width: 740px; /* or 950px */
+        max-width: 740px;
       }
       .grid .tick {
         stroke: lightgrey;
@@ -31,17 +28,14 @@
       .grid path {
         stroke-width: 0;
       }
-
       .yaxis text {
         stroke: red;
         opacity: 0.8;
       }
-
       .yaxis .tick {
         stroke: lightgrey;
         opacity: 0.7;
       }
-
     </style>
 
   </head>
@@ -49,7 +43,6 @@
     <div class="container">
       {% block body %}{% endblock %}
       <hr/>
-
     </div> <!-- /container -->
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
