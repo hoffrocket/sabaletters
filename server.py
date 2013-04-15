@@ -25,13 +25,9 @@ def timelinejs():
   letter_renderer = LetterRenderer()
   return letter_renderer.render_timeline_js()
 
-@app.route('/bootstrap/<path:filename>')
+@app.route('/static/<path:filename>')
 def bootstrap(filename):
-  return flask.send_from_directory('bootstrap/',filename)
-
-@app.route('/letter-img/<path:filename>')
-def letter_img(filename):
-  return flask.send_from_directory('letter-img',filename)
+  return flask.send_from_directory('static/',filename)
 
 @app.route('/')
 @app.route('/index.html')

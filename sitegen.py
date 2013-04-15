@@ -19,7 +19,7 @@ class LetterRenderer:
     self.letter_template = env.get_template("letter.html")
     self.index_template = env.get_template("index.html")
     self.all_letters = [f[:-9] for f in os.listdir('letter')]
-    self.letter_images = dict((f[:-4], f) for f in os.listdir('letter-img'))
+    self.letter_images = dict((f[:-4], f) for f in os.listdir('static/letter-img'))
 
   def render_timeline_js(self):
     hashes = [{'date': n } for n in self.all_letters]
@@ -52,8 +52,7 @@ def gen():
   os.mkdir("site")
   # copy static stuff to the site
 
-  shutil.copytree("bootstrap/", "site/bootstrap")
-  shutil.copytree("letter-img/", "site/letter-img")
+  shutil.copytree("static/", "site/static")
 
   letter_renderer = LetterRenderer()
   # render all the letters
