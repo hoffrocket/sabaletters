@@ -20,12 +20,22 @@
           <img class="img-polaroid" src="letter-img/{{image}}" alt="Letter from {{date}}" data-dismiss="modal" aria-hidden="true"/>
       </div>
     </div>
-    
   </div>
 {% else %}
   <h3>{{ date }}</h3>
   {{ letter }}
 {% endif %}
+  <div class="row-fluid">
+    <div class="span6">
+      {% if previous %}
+        <a href="{{previous}}">Previous Letter</a>
+      {% endif %}
+    </div>
+    <div class="span6">
+      {% if next %}
+        <p class="text-right"><a href="{{next}}">Next Letter</a></p>
+      {% endif %}
+    </div>
 {% endblock %}
 {% block foot %}
 <script>

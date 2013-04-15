@@ -32,9 +32,20 @@ class LetterRenderer:
     with open("letter/" + letter_name + ".markdown") as letter:
       letter_mardown = markdown(letter.read())
       date = datetime.datetime.strptime(letter_name,"%Y-%m-%d").strftime("%B %d, %Y")
-      return self.letter_template.render(letter = letter_mardown, 
-        date = date, 
-        image = self.letter_images.get(letter_name))
+      index = self.all_letters.index(letter_name)
+      previous = None
+      next = None
+      if index > 0:
+        previous = self.all_letters[index - 1] + ".html"
+      if index < len(self.all_letters) - 1:
+        next = self.all_letters[index + 1] + ".html"
+
+      return self.letter_template.render(
+        letter=letter_mardown, 
+        date=date, 
+        image=self.letter_images.get(letter_name),
+        next=next,
+        previous=previous)
 
 def gen():
   shutil.rmtree("site", True)

@@ -21,6 +21,23 @@
         margin-left: auto;
         max-width: 740px; /* or 950px */
       }
+      .grid .tick {
+        stroke: lightgrey;
+        opacity: 0.7;
+      }
+      .grid path {
+        stroke-width: 0;
+      }
+
+      .yaxis text {
+        stroke: red;
+        opacity: 0.8;
+      }
+
+      .yaxis .tick {
+        stroke: lightgrey;
+        opacity: 0.7;
+      }
 
     </style>
 
@@ -29,7 +46,7 @@
     <div class="container">
       {% block body %}{% endblock %}
       <hr/>
-      
+
     </div> <!-- /container -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
