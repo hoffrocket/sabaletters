@@ -5,7 +5,7 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
   if (!this.width || timelineDiv.width() != this.width) {
     this.width = timelineDiv.width();
     console.log("Width is " + timelineDiv.width());
-    var margin = {top: 10, right: 40, bottom: 10, left:40},
+    var margin = {top: 20, right: 40, bottom: 10, left:40},
         width = timelineDiv.width(),
         height = 120;
 
@@ -30,6 +30,17 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
       .tickSize(3, 0, 0)
       .tickPadding(2);
 
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient('top')
+      .tickSize(0)
+      .tickFormat(function(d){
+        if (d == 0)
+          return "Jan";
+        if (d > 334)
+          return "Dec";
+        else return "";
+      });
 
     function dayOfYear(d){
       var date = new Date(d.date);
@@ -67,6 +78,11 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
           .tickFormat("")
       )
 
+    svg.append('g')
+      .attr('class', 'xaxis')
+      .attr('transform', 'translate(10,-5)')
+      .call(xAxis);
+
     function isCurrentDate(d) {
       return d.date === currentLetter;
     }
@@ -83,6 +99,7 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
         .attr('cx', function(d){ return x(dayOfYear(d)) ; })
         .attr('cy', function(d){ return y(new Date(d.date).getUTCFullYear()); })
         .attr('r', 6)
+        .attr('title', function(d){ return d.date; })
         .on("mouseover", function(d){
           if (!isCurrentDate(d)){
             d3.select(this).transition().attr('r', function(d){ return 8; });
@@ -98,5 +115,9 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
             window.location = d.date + ".html";
           }
         });
+    svg.selectAll(".point").each(
+      function(d,i){
+          $(this).tooltip({container:"body"});
+      });
   }
 }
