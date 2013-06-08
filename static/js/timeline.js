@@ -37,7 +37,7 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
       .tickFormat(function(d){
         if (d == 0)
           return "Jan";
-        if (d > 334)
+        if (d > 330)
           return "Dec";
         else return "";
       });
@@ -80,11 +80,16 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
 
     svg.append('g')
       .attr('class', 'xaxis')
-      .attr('transform', 'translate(10,-5)')
+      .attr('transform', 'translate(3,-5)')
       .call(xAxis);
 
     function isCurrentDate(d) {
       return d.date === currentLetter;
+    }
+
+    function is_touch_device() {
+      return !!('ontouchstart' in window) // works on most browsers 
+        || !!('onmsgesturechange' in window); // works on ie10
     }
 
     svg.selectAll('.points')
@@ -115,9 +120,12 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
             window.location = d.date + ".html";
           }
         });
-    svg.selectAll(".point").each(
-      function(d,i){
+    if (!is_touch_device()){
+      svg.selectAll(".point").each(
+        function(d,i){
           $(this).tooltip({container:"body"});
-      });
+        }
+      );
+    }
   }
 }

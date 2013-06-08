@@ -26,17 +26,18 @@
   {{ letter }}
 {% endif %}
   <hr/>
-  <div class="row-fluid">
-    <div class="span6">
-      {% if previous %}
-        <a href="{{previous}}">Previous Letter</a>
-      {% endif %}
-    </div>
-    <div class="span6">
-      {% if next %}
-        <p class="text-right"><a href="{{next}}">Next Letter</a></p>
-      {% endif %}
-    </div>
+  <div class="row span12">
+      <div class="pull-left">
+        {% if previous %}
+          <a href="{{previous}}">Previous Letter</a>
+        {% endif %}
+      </div>
+      <div class="pull-right">
+        {% if next %}
+          <p class="text-right"><a href="{{next}}">Next Letter</a></p>
+        {% endif %}
+      </div>
+  </div>
 {% endblock %}
 {% block foot %}
 {% endblock %}
