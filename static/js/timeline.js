@@ -7,7 +7,7 @@ SabaLetters.drawTimeline = function(data, currentLetter) {
     console.log("Width is " + timelineDiv.width());
     var margin = {top: 20, right: 40, bottom: 10, left:40},
         width = timelineDiv.width(),
-        height = 120;
+        height = 150;
 
     var firstYear = new Date(data[0].date).getUTCFullYear(),
         lastYear = new Date(data[data.length - 1].date).getUTCFullYear();

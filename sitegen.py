@@ -18,6 +18,7 @@ class LetterRenderer:
     self.letter_template = env.get_template("letter.html")
     self.index_template = env.get_template("index.html")
     self.all_letters = [f[:-9] for f in os.listdir('letter')]
+    self.all_letters.sort()
     self.letter_images = dict((f[:-4], f) for f in os.listdir('static/letter-img'))
     self.timeline_json = [{'date': n } for n in self.all_letters]
 
