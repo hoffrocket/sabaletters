@@ -2,3 +2,5 @@ venv
 site
 *.pyc
 .DS_Store
+hugo/public
+.netlify
