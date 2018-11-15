@@ -1,0 +1,11 @@
+---
+label: Letter
+hide_body: false
+is_partial: false
+fields:
+- type: text
+  name: title
+  label: Title
+  description: Title of the post
+  config:
+    required: true
