@@ -15,3 +15,5 @@ fields:
   description: Date of the post
   config:
     date_format: YYYY-DD-MM
+pages:
+- hugo/content/posts/november-22-1940.md
