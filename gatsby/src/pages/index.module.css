@@ -1,0 +1,11 @@
+.intro {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 1em;
+  overflow: hidden;
+}
+
+.container {
+  background: #fff;
+}
