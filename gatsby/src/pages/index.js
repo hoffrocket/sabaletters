@@ -58,7 +58,7 @@ export const pageQuery = graphql`
     allContentfulLetter(sort: { fields: [date], order: ASC }) {
       edges {
         node {
-          id
+          slug
           images {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: THUMB) {
             ...GatsbyContentfulFluid_tracedSVG

@@ -61,11 +61,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    contentfulLetter(id: { eq: $slug }) {
-      id
+    contentfulLetter(slug: { eq: $slug }) {
+      slug
       date(formatString: "MMMM Do, YYYY")
       images {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
+        fluid(maxWidth: 1180 background: "rgb:000000") {
           ...GatsbyContentfulFluid_tracedSVG
         }
       }

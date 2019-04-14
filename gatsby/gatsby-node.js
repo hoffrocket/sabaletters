@@ -13,7 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
             allContentfulLetter(sort: { fields: [date], order: ASC }) {
               edges {
                 node {
-                  id
+                  slug
                 }
               }
             }
@@ -27,13 +27,13 @@ exports.createPages = ({ graphql, actions }) => {
 
         const letters = result.data.allContentfulLetter.edges
         letters.forEach((letter, index) => {
-          previousSlug = index > 0 ? letters[index - 1].node.id : null;
-          nextSlug = index < letters.length - 1 ? letters[index + 1].node.id : null;
+          previousSlug = index > 0 ? letters[index - 1].node.slug : null;
+          nextSlug = index < letters.length - 1 ? letters[index + 1].node.slug : null;
           createPage({
-            path: `/letter/${letter.node.id}/`,
+            path: `/letter/${letter.node.slug}/`,
             component: letterComp,
             context: {
-              slug: letter.node.id,
+              slug: letter.node.slug,
               previousSlug,
               nextSlug,
             },

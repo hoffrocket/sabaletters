@@ -9,7 +9,7 @@ export default ({ letter }) => (
   <div className={styles.preview}>
     {!isEmpty(letter.images) && <Img alt="" fluid={letter.images[0].fluid} /> }
     <h3 className={styles.previewTitle}>
-      <Link to={`/letter/${letter.id}`}>{letter.date}</Link>
+      <Link to={`/letter/${letter.slug}`}>{letter.date}</Link>
     </h3>
     <p>
       {letter.message.childMarkdownRemark.excerpt}
