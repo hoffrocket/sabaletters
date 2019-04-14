@@ -2,7 +2,7 @@ const Promise = require('bluebird')
 const path = require('path')
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   return new Promise((resolve, reject) => {
     const letterComp = path.resolve('./src/templates/letter.js')
@@ -27,17 +27,23 @@ exports.createPages = ({ graphql, actions }) => {
 
         const letters = result.data.allContentfulLetter.edges
         letters.forEach((letter, index) => {
-          previousSlug = index > 0 ? letters[index - 1].node.slug : null;
-          nextSlug = index < letters.length - 1 ? letters[index + 1].node.slug : null;
+          const previousSlug = index > 0 ? letters[index - 1].node.slug : null;
+          const nextSlug = index < letters.length - 1 ? letters[index + 1].node.slug : null;
+          const letterPath = `/letter/${letter.node.slug}/`;
           createPage({
-            path: `/letter/${letter.node.slug}/`,
+            path: letterPath,
             component: letterComp,
             context: {
               slug: letter.node.slug,
               previousSlug,
               nextSlug,
             },
-          })
+          });
+          createRedirect({
+            fromPath: `/${letter.node.slug}.html`,
+            toPath: letterPath,
+            isPermanent: true
+          });
         })
       })
     )
